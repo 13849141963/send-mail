@@ -11,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeUtility;
 import java.util.Properties;
 
 public class SendMailUtil {
@@ -83,7 +84,7 @@ public class SendMailUtil {
         MimeBodyPart attach = new MimeBodyPart();
         DataHandler dh = new DataHandler(new FileDataSource(mailSenderInfo.getFilePath()));
         attach.setDataHandler(dh);
-        attach.setFileName(dh.getName());  //
+        attach.setFileName(MimeUtility.encodeWord(dh.getName()));  //
 
         //创建容器描述数据关系
         MimeMultipart mp = new MimeMultipart();
